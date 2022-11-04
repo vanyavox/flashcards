@@ -7,8 +7,16 @@ h1 {
   border-radius: 10px;
   text-align: center;
   margin: 30px;
-  color: #3ebd03;
+  color: #3EBD03;
   background-color: rgba(0, 0, 0, 0.893);
+}
+h1:hover {
+  width: 100%;
+  border-radius: 10px;
+  text-align: center;
+  margin: 30px;
+  color: #FFFFFF;
+  background-image: url('../img/kod_tsifry_matritsa_127037_1280x960.jpg');
 }
 
 a {

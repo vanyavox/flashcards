@@ -5,6 +5,7 @@ module.exports = function Results({ answers, count, username }) {
   return (
     <div className='container'>
       <h1>{username}, вы ответили верно на {count} вопросов</h1>
+      <div className='card'>
       <ul>
           {answers.map((ans) => 
             <li>
@@ -13,6 +14,7 @@ module.exports = function Results({ answers, count, username }) {
               <div className='text-success'>Правильный ответ: {ans.answer}</div>
             </li>)}
         </ul>
+        </div>
 
         <a href="/">Главная</a>
     </div>
