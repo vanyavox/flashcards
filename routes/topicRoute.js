@@ -1,25 +1,25 @@
 const express = require('express');
-const Main = require('../view/Main');
-const Question = require('../view/Question');
+const Question = require('../view/Question.jsx');
+
 const router = express.Router();
-const { Deck, Card } = require('../db/models');
+const { Card } = require('../db/models');
 
 router.get('/:id', async (req, res) => {
   const { id } = req.params;
+  // console.log(id, '-------------------------------');
   const cards = await Card.findAll(
     {
       raw: true,
-      attributes: { 
-        exclude: ['createdAt', 'updatedAt'] 
+      attributes: {
+        exclude: ['createdAt', 'updatedAt'],
       },
-      where: {deck_id : id},
-    }
+      where: { topicId: id },
+    },
   );
-  console.log(cards);
-  //res.json(cards);
-  //res.end();
-  res.renderComponent(Question, { title: 'Queezy'}, { doctype: false });
+  // console.log(cards);
+  // res.json(cards);
+  // res.end();
+  res.renderComponent(Question, { title: 'Queezy', cards }, { doctype: false });
 });
-
 
 module.exports = router;
