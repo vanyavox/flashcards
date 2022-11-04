@@ -1,3 +1,45 @@
+body {
+  background-image: url('../img/bbfe98f1132ce9f.jpg');
+}
+
+h1 {
+  width: 100%;
+  border-radius: 10px;
+  text-align: center;
+  margin: 30px;
+  color: #3ebd03;
+  background-color: rgba(0, 0, 0, 0.893);
+}
+
+a {
+  font-size: large;
+  color: #e9efe6;
+  border-radius: 10px;
+}
+a:hover {
+  font-size: large;
+  color: #c2ffa4;
+  border-radius: 10px;
+}
+
+.d-flex{
+  justify-content: space-around;
+}
+
+.btn {
+  border-color: #3ebd03;
+  background-color: #3ebd03;
+}
+.btn:hover {
+  border-color: #3ebd03;
+  background-color: #7fdf52;
+}
+
+.btn-primary:active {
+  border-color: #3ebd03;
+  background-color: #2b7f04;
+}
+
 .questionCard {
   height: 100px;
   border: 1px solid black;
@@ -10,16 +52,17 @@
 }
 
 .questionCard a {
+  background-color: rgba(30, 118, 33, 0.7);
   display: block;
   height: 100%;
   width: 100%;
   text-decoration: none;
-  color: #0d6efd;
+  color: #e9efe6;
 } 
 
 .questionCard a:hover {
   color: white;
-  background-color: #0d6efd;
+  background-color: #3ebd03;
   cursor: pointer;
   transition: 1s;
 } 
