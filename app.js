@@ -10,6 +10,7 @@ const ssr = require('./middleware/ssr');
 const mainRoute = require('./routes/mainRoute');
 const topicRoute = require('./routes/topicRoute');
 const resultsRoute = require('./routes/resultsRoute');
+const userRoute = require('./routes/userRoute');
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use(ssr);
 app.use('/', mainRoute);
 app.use('/quiz', topicRoute);
 app.use('/results', resultsRoute);
+app.use('/user', userRoute);
 
 app.listen(PORT, () => {
   console.log(`Started server at ${PORT} port`);

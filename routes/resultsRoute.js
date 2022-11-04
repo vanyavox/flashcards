@@ -11,13 +11,15 @@ router.post('/', async (req, res) => {
   let count = 0;
   for (const item of arr) {
     const { answer, name, topicId } = await Card.findByPk(item.id);
-    answers.push({
-      name,
-      userAnswer: item.text,
-      answer,
-      topicId,
-    });
-    if (answer.toLowerCase() === item.text.toLowerCase()) {
+
+    if (answer.toLowerCase() !== item.text.toLowerCase()) {
+      answers.push({
+        name,
+        userAnswer: item.text,
+        answer,
+        topicId,
+      });
+    } else {
       count++;
     }
   }
@@ -29,7 +31,8 @@ router.post('/', async (req, res) => {
     createdAt: new Date(),
     updatedAt: new Date(),
   });
-  res.renderComponent(Results, { answers, count }, { doctype: false });
+  const { username } = res.app.locals;
+  res.renderComponent(Results, { answers, count, username }, { doctype: false });
 });
 
 module.exports = router;
