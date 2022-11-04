@@ -35,10 +35,12 @@ a:hover {
 }
 
 .btn {
+  border: none;
   border-color: #3ebd03;
   background-color: #3ebd03;
 }
 .btn:hover {
+  border: none;
   border-color: #3ebd03;
   background-color: #7fdf52;
 }
