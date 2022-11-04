@@ -25,7 +25,7 @@ router.post('/', async (req, res) => {
   }
   // console.log(answers);
   const data = await Result.create({
-    userId: 1,
+    userId: res.app.locals.userId,
     topicId: answers[0].topicId,
     points: count,
     createdAt: new Date(),
