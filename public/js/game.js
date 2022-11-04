@@ -20,29 +20,47 @@
 //   }
 // });
 const arr = [];
-document.querySelector('.cards').addEventListener('click', (e) => {
-  // console.log(e.target);
-  if (e.target.classList.contains('answer')) {
-    const { id } = e.target.closest('.card');
-    const text = e.target.closest('.card').querySelector('input').value;
-    e.target.classList.add('disabled');
-    e.target.closest('.card').querySelector('input').setAttribute('disabled', 'disabled');
-    arr.push({ id, text });
-    console.log(arr);
-  }
-});
+if (document.querySelector('.cards')) {
+  document.querySelector('.cards').addEventListener('click', (e) => {
+    // console.log(e.target);
+    if (e.target.classList.contains('answer')) {
+      const { id } = e.target.closest('.card');
+      const text = e.target.closest('.card').querySelector('input').value;
+      e.target.classList.add('disabled');
+      e.target.closest('.card').querySelector('input').setAttribute('disabled', 'disabled');
+      arr.push({ id, text });
+      console.log(arr);
+    }
+  });
 
-document.querySelector('.send').addEventListener('click', async (e) => {
-  const res = await fetch('/results', {
+  document.querySelector('.send').addEventListener('click', async (e) => {
+    const res = await fetch('/results', {
+      method: 'POST',
+      headers: { 'Content-type': 'application/json' },
+      body: JSON.stringify({
+        arr,
+      }),
+    });
+    const data = await res.text();
+    // console.log(data);
+    document.querySelector('.cards').remove();
+    document.querySelector('.send').remove();
+    document.body.insertAdjacentHTML('beforeend', data);
+  });
+}
+document.querySelector('#ok').addEventListener('click', async (e) => {
+  const userName = document.querySelector('#userName').value;
+  const res = await fetch('/user', {
     method: 'POST',
     headers: { 'Content-type': 'application/json' },
     body: JSON.stringify({
-      arr,
+      userName,
     }),
   });
-  const data = await res.text();
-  // console.log(data);
-  document.querySelector('.cards').remove();
-  document.querySelector('.send').remove();
-  document.body.insertAdjacentHTML('beforeend', data);
+  const data = await res.json();
+  if (data === userName) {
+    document.querySelector('#ok').remove();
+    document.querySelector('#userName').remove();
+    document.querySelector('h1').innerText += `, ${userName}`;
+  }
 });
